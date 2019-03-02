@@ -20,7 +20,7 @@ public abstract class AdvancedPluginFull extends AdvancedPlugin {
                     getAdvConfig().getConfigurationSection("database"),
                     getConfig().getConfigurationSection("database"));
         } catch (SQLException | ClassNotFoundException e) {
-            getALogger().logFatal("Unable to setup database", e);
+            getALogger().logFatal("Error connecting to database", e);
             throw new RuntimeException(e);
         }
     }
