@@ -54,28 +54,24 @@ public class DbLayer {
         connectionSource.closeQuietly();
     }
 
-    public static DbLayer initializeDatabase(ConfigurationSection advConfig, ConfigurationSection bukkitConfig) throws SQLException, ClassNotFoundException {
-        if (advConfig.getBoolean("enabled", false)) {
-            String host = bukkitConfig.getString("host");
-            String port = bukkitConfig.getString("port");
-            String db = bukkitConfig.getString("db");
-            String user = bukkitConfig.getString("user");
-            String pass = bukkitConfig.getString("pass");
-            String connString = String.format("jdbc:mysql://%s:%s/%s", host, port, db);
+    public static DbLayer initializeDatabase(ConfigurationSection pluginYml, ConfigurationSection bukkitConfig) throws SQLException, ClassNotFoundException {
+        String host = bukkitConfig.getString("host");
+        String port = bukkitConfig.getString("port");
+        String db = bukkitConfig.getString("db");
+        String user = bukkitConfig.getString("user");
+        String pass = bukkitConfig.getString("pass");
+        String connString = String.format("jdbc:mysql://%s:%s/%s", host, port, db);
 
-            ConnectionSource dbConnection = new JdbcPooledConnectionSource(connString, user, pass);
+        ConnectionSource dbConnection = new JdbcPooledConnectionSource(connString, user, pass);
 
-            DbLayer dbLayer = new DbLayer(dbConnection);
+        DbLayer dbLayer = new DbLayer(dbConnection);
 
-            dbLayer.createDAOs(advConfig.getStringList("data_classes"));
+        dbLayer.createDAOs(pluginYml.getStringList("data_classes"));
 
-            if (advConfig.getBoolean("create_tables", false)) {
-                dbLayer.createTables();
-            }
-
-            return dbLayer;
-        } else {
-            return null;
+        if (pluginYml.getBoolean("create_tables", false)) {
+            dbLayer.createTables();
         }
+
+        return dbLayer;
     }
 }

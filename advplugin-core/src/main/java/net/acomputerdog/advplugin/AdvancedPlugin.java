@@ -15,17 +15,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public abstract class AdvancedPlugin extends JavaPlugin {
 
-    private YamlConfiguration advConfig;
     private YamlConfiguration pluginYml;
     private ALogger aLogger;
     private CommandLayer commandLayer;
 
     public ALogger getALogger() {
         return aLogger;
-    }
-
-    public Configuration getAdvConfig() {
-        return advConfig;
     }
 
     public Configuration getPluginYml() {
@@ -61,7 +56,6 @@ public abstract class AdvancedPlugin extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
 
-        advConfig = YamlConfiguration.loadConfiguration(getTextResource("advplugin.yml"));
         pluginYml = YamlConfiguration.loadConfiguration(getTextResource("plugin.yml"));
 
         aLogger = new ALogger(getLogger());
@@ -72,7 +66,6 @@ public abstract class AdvancedPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         aLogger = null;
-        advConfig = null;
         commandLayer = null;
         pluginYml = null;
     }

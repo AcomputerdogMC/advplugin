@@ -16,9 +16,13 @@ public abstract class AdvancedPluginFull extends AdvancedPlugin {
         super.onEnable();
 
         try {
-            dbLayer = DbLayer.initializeDatabase(
-                    getAdvConfig().getConfigurationSection("database"),
-                    getConfig().getConfigurationSection("database"));
+            if (getPluginYml().contains("adv-database")) {
+                dbLayer = DbLayer.initializeDatabase(
+                        getPluginYml().getConfigurationSection("adv-database"),
+                        getConfig().getConfigurationSection("database"));
+            } else {
+                dbLayer = null;
+            }
         } catch (SQLException | ClassNotFoundException e) {
             getALogger().logFatal("Error connecting to database", e);
             throw new RuntimeException(e);

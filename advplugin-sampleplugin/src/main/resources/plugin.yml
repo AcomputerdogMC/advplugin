@@ -31,3 +31,7 @@ permissions:
   ${name}.setmessage:
     description: Use /setmessage
     default: true
+
+adv-database:
+  data_classes: [net.acomputerdog.advplugin.sample.db.Message]
+  create_tables: true
