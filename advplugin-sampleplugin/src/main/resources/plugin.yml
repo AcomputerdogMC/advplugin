@@ -1,0 +1,33 @@
+name: ${name}
+version: ${version}
+description: Sample plugin for ADVPlugin library
+author: acomputerdog
+main: net.acomputerdog.advplugin.sample.SamplePlugin
+api-version: 1.13
+
+commands:
+  getmessage:
+    description: Gets the message for a player
+    permission: ${name}.getmessage
+    usage: /getmessage [name]
+    max-args: 1
+  setmessage:
+    description: Sets the message for a player
+    permission: ${name}.setmessage
+    usage: /setmessage <message>
+    min-args: 1
+    requires-player: true
+
+permissions:
+  ${name}.*:
+    description: Use all commands
+    default: op
+    children:
+      ${name}.getmessage: true
+      ${name}.setmessage: true
+  ${name}.getmessage:
+    description: Use /getmessage
+    default: true
+  ${name}.setmessage:
+    description: Use /setmessage
+    default: true
