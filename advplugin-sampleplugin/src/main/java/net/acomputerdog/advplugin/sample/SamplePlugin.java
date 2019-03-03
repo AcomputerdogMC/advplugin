@@ -21,6 +21,7 @@ public class SamplePlugin extends AdvancedPluginFull {
 
         try {
             messageDao = getDatabase().lookupDao(Message.class);
+            getALogger().logInfo(() -> "Database initialized.");
 
             long count = messageDao.countOf();
 

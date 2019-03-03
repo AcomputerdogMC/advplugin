@@ -25,6 +25,7 @@ hs_err_pid*
 # Maven files
 target/
 .flattened-pom.xml
+dependency-reduced-pom.xml
 
 # IDEA files
 *.iml

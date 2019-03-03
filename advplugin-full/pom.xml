@@ -26,7 +26,6 @@
             <artifactId>advplugin-core</artifactId>
             <version>${advplugin.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>

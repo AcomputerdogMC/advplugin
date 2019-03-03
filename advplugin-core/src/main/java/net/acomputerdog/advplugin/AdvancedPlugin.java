@@ -59,11 +59,27 @@ public abstract class AdvancedPlugin extends JavaPlugin {
         pluginYml = YamlConfiguration.loadConfiguration(getTextResource("plugin.yml"));
 
         aLogger = new ALogger(getLogger());
-        if (pluginYml.contains("min-log-level")) {
-            aLogger.setLogLevel(pluginYml.getString("min-log-level"));
+
+        try {
+            ALogger.ALevel level = null;
+            if (pluginYml.contains("def-min-log-level")) {
+                level = ALogger.ALevel.parse(pluginYml.getString("def-min-log-level"));
+            }
+            if (getConfig().contains("min-log-level")) {
+                level = ALogger.ALevel.parse(getConfig().getString("min-log-level"));
+            }
+            if (level != null) {
+                aLogger.logDetail("Setting log level to " + level.toString());
+                aLogger.setLogLevel(level);
+            }
+
+        } catch (IllegalArgumentException e) {
+            aLogger.logWarn("Unable to parse log level from config");
         }
 
-        commandLayer = new CommandLayer(this, pluginYml.getConfigurationSection("commands"));
+        if (pluginYml.contains("commands")) {
+            commandLayer = new CommandLayer(this, pluginYml.getConfigurationSection("commands"));
+        }
     }
 
     @Override
