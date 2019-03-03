@@ -55,12 +55,20 @@ public class DbLayer {
     }
 
     public static DbLayer initializeDatabase(ConfigurationSection pluginYml, ConfigurationSection bukkitConfig) throws SQLException, ClassNotFoundException {
-        String host = bukkitConfig.getString("host");
-        String port = bukkitConfig.getString("port");
-        String db = bukkitConfig.getString("db");
-        String user = bukkitConfig.getString("user");
-        String pass = bukkitConfig.getString("pass");
-        String connString = String.format("jdbc:mysql://%s:%s/%s", host, port, db);
+        String host = bukkitConfig.getString("host", "localhost");
+        int port = bukkitConfig.getInt("port", 3306);
+        String db = bukkitConfig.getString("db", "minecraft");
+        String user = bukkitConfig.getString("user", "root");
+        String pass = bukkitConfig.getString("pass", "");
+
+        StringBuilder options = new StringBuilder();
+        options.append("autoReconnect=true");
+        if (bukkitConfig.contains("use-ssl")) {
+            options.append("&useSSL=");
+            options.append(bukkitConfig.getBoolean("use-ssl"));
+        }
+
+        String connString = String.format("jdbc:mysql://%s:%d/%s?%s", host, port, db, options.toString());
 
         ConnectionSource dbConnection = new JdbcPooledConnectionSource(connString, user, pass);
 

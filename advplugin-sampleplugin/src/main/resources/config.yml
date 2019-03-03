@@ -4,3 +4,4 @@ database:
   db: minecraft
   user: user
   pass: pass
+  use-ssl: false
