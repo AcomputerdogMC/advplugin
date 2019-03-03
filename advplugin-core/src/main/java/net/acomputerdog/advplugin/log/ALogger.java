@@ -97,6 +97,22 @@ public class ALogger {
         logger.log(DEBUG, e, message);
     }
 
+    public void setLogLevel(String level) {
+        this.logger.setLevel(parseLevel(level));
+    }
+
+    private static Level parseLevel(String level) {
+        switch (level.toUpperCase()) {
+            case "FATAL": return FATAL;
+            case "ERROR": return ERROR;
+            case "WARN": return WARN;
+            case "INFO": return INFO;
+            case "DETAIL": return DETAIL;
+            case "DEBUG": return DEBUG;
+            default: return null;
+        }
+    }
+
     private static class ALevel extends Level {
         protected ALevel(String name, int value) {
             super(name, value);

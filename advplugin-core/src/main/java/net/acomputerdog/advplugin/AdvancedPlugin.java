@@ -59,6 +59,9 @@ public abstract class AdvancedPlugin extends JavaPlugin {
         pluginYml = YamlConfiguration.loadConfiguration(getTextResource("plugin.yml"));
 
         aLogger = new ALogger(getLogger());
+        if (pluginYml.contains("min-log-level")) {
+            aLogger.setLogLevel(pluginYml.getString("min-log-level"));
+        }
 
         commandLayer = new CommandLayer(this, pluginYml.getConfigurationSection("commands"));
     }

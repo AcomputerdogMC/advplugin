@@ -35,3 +35,4 @@ permissions:
 adv-database:
   data_classes: [net.acomputerdog.advplugin.sample.db.Message]
   create_tables: true
+min-log-level: INFO
