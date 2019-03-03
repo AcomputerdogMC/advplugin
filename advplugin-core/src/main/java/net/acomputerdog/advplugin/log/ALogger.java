@@ -25,11 +25,11 @@ public class ALogger {
     public void logFatal(Supplier<String> message) {
         logger.log(FATAL, message);
     }
-    public void logFatal(String message, Exception e) {
-        logger.log(FATAL, message, e);
+    public void logFatal(String message, Throwable t) {
+        logger.log(FATAL, message, t);
     }
-    public void logFatal(Supplier<String> message, Exception e) {
-        logger.log(FATAL, e, message);
+    public void logFatal(Supplier<String> message, Throwable t) {
+        logger.log(FATAL, t, message);
     }
 
     public void logError(String message) {
@@ -38,11 +38,11 @@ public class ALogger {
     public void logError(Supplier<String> message) {
         logger.log(ERROR, message);
     }
-    public void logError(String message, Exception e) {
-        logger.log(ERROR, message, e);
+    public void logError(String message, Throwable t) {
+        logger.log(ERROR, message, t);
     }
-    public void logError(Supplier<String> message, Exception e) {
-        logger.log(ERROR, e, message);
+    public void logError(Supplier<String> message, Throwable t) {
+        logger.log(ERROR, t, message);
     }
 
     public void logWarn(String message) {
@@ -51,11 +51,11 @@ public class ALogger {
     public void logWarn(Supplier<String> message) {
         logger.log(WARN, message);
     }
-    public void logWarn(String message, Exception e) {
-        logger.log(WARN, message, e);
+    public void logWarn(String message, Throwable t) {
+        logger.log(WARN, message, t);
     }
-    public void logWarn(Supplier<String> message, Exception e) {
-        logger.log(WARN, e, message);
+    public void logWarn(Supplier<String> message, Throwable t) {
+        logger.log(WARN, t, message);
     }
 
     public void logInfo(String message) {
@@ -64,11 +64,11 @@ public class ALogger {
     public void logInfo(Supplier<String> message) {
         logger.log(INFO, message);
     }
-    public void logInfo(String message, Exception e) {
-        logger.log(INFO, message, e);
+    public void logInfo(String message, Throwable t) {
+        logger.log(INFO, message, t);
     }
-    public void logInfo(Supplier<String> message, Exception e) {
-        logger.log(INFO, e, message);
+    public void logInfo(Supplier<String> message, Throwable t) {
+        logger.log(INFO, t, message);
     }
 
     public void logDetail(String message) {
@@ -77,11 +77,11 @@ public class ALogger {
     public void logDetail(Supplier<String> message) {
         logger.log(DETAIL, message);
     }
-    public void logDetail(String message, Exception e) {
-        logger.log(DETAIL, message, e);
+    public void logDetail(String message, Throwable t) {
+        logger.log(DETAIL, message, t);
     }
-    public void logDetail(Supplier<String> message, Exception e) {
-        logger.log(DETAIL, e, message);
+    public void logDetail(Supplier<String> message, Throwable t) {
+        logger.log(DETAIL, t, message);
     }
 
     public void logDebug(String message) {
@@ -90,11 +90,11 @@ public class ALogger {
     public void logDebug(Supplier<String> message) {
         logger.log(DEBUG, message);
     }
-    public void logDebug(String message, Exception e) {
-        logger.log(DEBUG, message, e);
+    public void logDebug(String message, Throwable t) {
+        logger.log(DEBUG, message, t);
     }
-    public void logDebug(Supplier<String> message, Exception e) {
-        logger.log(DEBUG, e, message);
+    public void logDebug(Supplier<String> message, Throwable t) {
+        logger.log(DEBUG, t, message);
     }
 
     public void setLogLevel(String level) {
